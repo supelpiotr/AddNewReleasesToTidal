@@ -21,6 +21,12 @@ public class LoginController {
     @GetMapping("/signup")
     public String signUp(Model model) {
         model.addAttribute("user", new User());
+        return "../../home";
+    }
+
+    @GetMapping("/login/register")
+    public String signUp2(Model model) {
+        model.addAttribute("user", new User());
         return "login/register";
     }
 
