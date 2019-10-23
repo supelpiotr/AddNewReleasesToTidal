@@ -22,5 +22,6 @@
             <property name="hibernate.connection.characterEncoding" value="utf8"/>
 
         </properties>
+
     </persistence-unit>
 </persistence>
