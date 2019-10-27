@@ -58,20 +58,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//
-//        auth.jdbcAuthentication().dataSource(dataSource())
-//        .passwordEncoder(passwordEncoder());
-//                .passwordEncoder(passwordEncoder())
-//                .withUser("admin@wp.pl").password(passwordEncoder().encode("admin123")).roles("admin")
-//                .and()
-//                .withUser("pokemon").password(passwordEncoder().encode("pokemon123")).roles("pokemon");
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/*").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/signup").permitAll()
                 .anyRequest().authenticated()
@@ -80,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/signin").permitAll()
                 .and()
                 .csrf().disable()
-                .logout().logoutUrl("/logout").permitAll();
+                .logout().logoutUrl("/").permitAll();
     }
 
 }
