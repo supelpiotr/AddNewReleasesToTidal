@@ -21,12 +21,6 @@ public class LoginController {
     @GetMapping("/signup")
     public String signUp(Model model) {
         model.addAttribute("user", new User());
-        return "../../home";
-    }
-
-    @GetMapping("/login/register")
-    public String signUp2(Model model) {
-        model.addAttribute("user", new User());
         return "login/register";
     }
 
@@ -45,18 +39,6 @@ public class LoginController {
     public String signIn(Model model) {
         model.addAttribute("user", new User());
         return "login/signin";
-    }
-
-    @PostMapping("/signin")
-    public String login(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
-        User userDB = userRepository.findByEmail(user.getEmail())
-                .orElseThrow(EmailNotExistException::new);
-        boolean passwordMiss = !BCrypt.checkpw(user.getPassword(), userDB.getPassword());
-        if (bindingResult.hasErrors() || passwordMiss) {
-            model.addAttribute("loginFailed", passwordMiss);
-            return "login/signin";
-        }
-        return "login/dashboard";
     }
 
 }
