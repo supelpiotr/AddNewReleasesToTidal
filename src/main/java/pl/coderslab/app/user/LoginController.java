@@ -18,6 +18,11 @@ public class LoginController {
 
     private final UserRepository userRepository;
 
+    @GetMapping("/home")
+    public String homepage() {
+        return "../index";
+    }
+
     @GetMapping("/signup")
     public String signUp(Model model) {
         model.addAttribute("user", new User());
