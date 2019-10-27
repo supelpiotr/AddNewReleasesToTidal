@@ -1,6 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/header.jsp"%>
 
+<html>
+<head>
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
 <body>
 <form:form method="post" modelAttribute="user">
 
@@ -31,8 +41,14 @@
 
                 <div class="form-group">
                     <label for="emailId">Email:</label>
-                    <form:input type="email" path="email" id="emailId" class="form-control"/>
-                    <form:errors path="email" element="div" cssClass="error"/>
+                    <form:input type="email" path="username" id="emailId" class="form-control"/>
+                    <form:errors path="username" element="div" cssClass="error"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="favouriteGenre">Favourite music genre:</label>
+                    <form:input type="text" path="favouriteGenre" id="favouriteGenreId" class="form-control"/>
+                    <form:errors path="favouriteGenre" element="div" cssClass="error"/>
                 </div>
 
                 <input type="submit" class="btn btn-primary" value="Save">

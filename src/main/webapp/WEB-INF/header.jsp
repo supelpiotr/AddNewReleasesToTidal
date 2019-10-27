@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Zaplanuj Jedzonko</title>
+    <title>MyMusicList</title>
 </head>
 <body>
 
@@ -17,7 +18,7 @@
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
           rel="stylesheet">
-    <link href='<c:url value="/resources/css/style1.css"/>' rel="stylesheet" type="text/css">
+    <link href='<c:url value="/resources/css/style.css"/>' rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -31,36 +32,38 @@
 </head>
 
 <body>
+<sec:authorize access="!isAuthenticated()">
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-around">
         <a href="/" class="navbar-brand main-logo">
-            Zaplanuj <span>Jedzonko</span>
+            My <span>MusicList</span>
         </a>
         <ul class="nav nounderline text-uppercase">
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="/app">zaplanuj posiłek</a>
+                <a class="nav-link color-header" href="/signin">logowanie</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="/login">logowanie</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="/register">rejestracja</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link" href="/about">o aplikacji</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="/recipes">Przepisy</a>
-            </li>
-            <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="/contact">Kontakt</a>
+                <a class="nav-link color-header" href="/signup">rejestracja</a>
             </li>
         </ul>
     </nav>
 </header>
+</sec:authorize>
 
-
-
+<sec:authorize access="isAuthenticated()">
+    <header class="page-header">
+        <nav class="navbar navbar-expand-lg justify-content-around">
+            <a href="/" class="navbar-brand main-logo">
+                My <span>MusicList</span>
+            </a>
+            <ul class="nav nounderline text-uppercase">
+                <li class="nav-item ml-4">
+                    <a class="nav-link color-header" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</sec:authorize>
 
 </body>
 </html>
