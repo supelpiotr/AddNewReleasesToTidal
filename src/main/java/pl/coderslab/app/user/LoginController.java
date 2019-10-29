@@ -17,10 +17,16 @@ import javax.validation.Valid;
 public class LoginController {
 
     private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     @GetMapping("/home")
     public String homepage() {
         return "../index";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/";
     }
 
     @GetMapping("/signup")
@@ -35,8 +41,7 @@ public class LoginController {
             return "login/register";
         }
 
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        userRepository.save(user);
+        userService.saveUser(user);
         return "redirect:signin";
     }
 

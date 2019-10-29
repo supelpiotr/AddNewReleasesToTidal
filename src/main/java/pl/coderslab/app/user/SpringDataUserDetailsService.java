@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import pl.coderslab.app.role.Role;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class SpringDataUserDetailsService implements UserDetailsService {

@@ -1,10 +1,2 @@
-create table users (
-username varchar(256),
-password varchar(256),
-enabled boolean
-);
-
-create table authorities (
-username varchar(256),
-authority varchar(256)
-);
+INSERT INTO `MyMusicList`.`role` (`role_id`, `role`) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO `MyMusicList`.`role` (`role_id`, `role`) VALUES (2, 'ROLE_USER');
