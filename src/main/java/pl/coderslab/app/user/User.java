@@ -25,8 +25,10 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
+/**    Changing the model. Don't want to limit user to one
+    favourite music genre.
     @Column(nullable = false)
-    private String favouriteGenre;
+    private String favouriteGenre;*/
 
     @NotBlank
     @Column(nullable = false)
@@ -40,7 +42,7 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
-    @ManyToMany/**(cascade = CascadeType.ALL, fetch = FetchType.EAGER)*/
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

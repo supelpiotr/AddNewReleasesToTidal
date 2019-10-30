@@ -1,4 +1,21 @@
 <%@ include file="/WEB-INF/header.jsp"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()">
+<section class="padding-large bg-light">
+    <table border style="width:100%" align="center">
+        <tr>
+            <th>Title</th>
+        </tr>
+        <c:forEach var="title" items="${releases.titles}">
+        <tr>
+                <td>${title}</td>
+        </tr>
+        </c:forEach>
+
+    </table>
+</section>
+</sec:authorize>
 
 <section class="padding-large bg-light">
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">

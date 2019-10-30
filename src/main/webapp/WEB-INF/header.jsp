@@ -40,10 +40,10 @@
         </a>
         <ul class="nav nounderline text-uppercase">
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="/signin">logowanie</a>
+                <a class="nav-link color-header" href="/signin">SIGN IN</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="/signup">rejestracja</a>
+                <a class="nav-link color-header" href="/signup">SIGN UP</a>
             </li>
         </ul>
     </nav>
@@ -56,9 +56,34 @@
             <a href="/" class="navbar-brand main-logo">
                 My <span>MusicList</span>
             </a>
+            <div class="dropdown">
+                <button class="dropbtn">New Releases</button>
+                <div class="dropdown-content">
+                    <a href="/newreleases/bass">Bass</a>
+                    <a href="/newreleases/breakbeat">Breakbeat</a>
+                    <a href="/newreleases/disco">Disco/Nu-Disco</a>
+                    <a href="/newreleases/drumandbass">Drum And Bass</a>
+                    <a href="/newreleases/dubstep">Dubstep</a>
+                    <a href="/newreleases/edm">EDM</a>
+                    <a href="/newreleases/electro">Electro</a>
+                    <a href="/newreleases/dance-pop">Euro Dance/Pop Dance</a>
+                    <a href="/newreleases/footwork-juke">Footwork/Juke</a>
+                    <a href="/newreleases/funk-soul-jazz">Funk Soul & Jazz</a>
+                    <a href="/newreleases/hardcore">Hardcore/style</a>
+                    <a href="/newreleases/hip-hop">Hip Hop/R&B</a>
+                    <a href="/newreleases/house">House</a>
+                    <a href="/newreleases/leftfield">Leftfield</a>
+                    <a href="/newreleases/pop">Pop</a>
+                    <a href="/newreleases/reggae">Reggae</a>
+                    <a href="/newreleases/rock-music">Rock (All)</a>
+                    <a href="/newreleases/techno">Techno</a>
+                    <a href="/newreleases/trance-music">Trance</a>
+                    <a href="/newreleases/4x4-garage">UK Garage</a>
+                </div>
+            </div>
             <ul class="nav nounderline text-uppercase">
                 <li class="nav-item ml-4">
-                    <a class="nav-link color-header" href="/logout">Wyloguj</a>
+                    <a class="nav-link color-header" href="/logout">LOGOUT</a>
                 </li>
             </ul>
         </nav>
