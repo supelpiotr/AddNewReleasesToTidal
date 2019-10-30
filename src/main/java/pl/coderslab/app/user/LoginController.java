@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.app.release.NewRelease;
+
 import javax.validation.Valid;
 
 @Controller
@@ -18,7 +20,7 @@ public class LoginController {
 
     @GetMapping("/home")
     public String homepage() {
-        return "../index";
+        return "/index";
     }
 
     @GetMapping("/logout")
@@ -46,6 +48,12 @@ public class LoginController {
     public String signIn(Model model) {
         model.addAttribute("user", new User());
         return "login/signin";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("user", new User());
+        return "login/dashboard";
     }
 
 }
