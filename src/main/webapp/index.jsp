@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/header.jsp"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<sec:authorize access="isAuthenticated()">
+<%--<sec:authorize access="isAuthenticated()">--%>
 <section class="padding-large bg-light">
     <table border style="width:100%" align="center">
         <tr>
@@ -15,7 +15,7 @@
 
     </table>
 </section>
-</sec:authorize>
+<%--</sec:authorize>--%>
 
 <%--<section class="padding-large bg-light">--%>
 <%--    <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">--%>
