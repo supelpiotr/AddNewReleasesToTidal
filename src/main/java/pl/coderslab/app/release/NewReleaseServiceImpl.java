@@ -27,6 +27,7 @@ public class NewReleaseServiceImpl implements NewReleaseService {
                 }
             }
             return titlesParsed;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +48,8 @@ public class NewReleaseServiceImpl implements NewReleaseService {
                     artistsParsed.add(artist.text());
                 }
             }
+            return artistsParsed;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

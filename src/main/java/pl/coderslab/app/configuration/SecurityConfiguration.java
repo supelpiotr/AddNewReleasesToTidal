@@ -44,14 +44,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new SpringDataUserDetailsService();
     }
 
+//    @Bean
+//    public DataSource dataSource() {
+//        SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/MyMusicList?serverTimezone=UTC");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("coderslab");
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        return dataSource;
+//    }
+
     @Bean
-    public DataSource dataSource() {
-        SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/MyMusicList?serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("coderslab");
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        return dataSource;
+    public NewRelease newRelease() {
+        return new NewRelease();
     }
 
     @Bean
