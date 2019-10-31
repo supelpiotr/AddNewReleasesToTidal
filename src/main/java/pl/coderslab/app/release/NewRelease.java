@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Data
 @Component
 @RequiredArgsConstructor
-@Data
 public class NewRelease {
 
     private List<String> titles;
