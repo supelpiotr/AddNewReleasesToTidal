@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/header.jsp"%>
-<%--<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>--%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authorize access="isAuthenticated()">
 <section class="padding-large bg-light">
