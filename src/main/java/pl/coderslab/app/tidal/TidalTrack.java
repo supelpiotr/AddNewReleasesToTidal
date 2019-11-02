@@ -3,7 +3,7 @@ package pl.coderslab.app.tidal;
 import java.util.List;
 import java.util.Map;
 
-public class Track {
+public class TidalTrack {
     private String copyright;
     private Map<String, Object> album;
     private String title;
