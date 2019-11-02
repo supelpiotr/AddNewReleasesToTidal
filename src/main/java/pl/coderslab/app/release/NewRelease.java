@@ -13,5 +13,6 @@ public class NewRelease {
 
     private List<String> titles;
     private List<String> artists;
+    private List<String> tidalURL;
 
 }

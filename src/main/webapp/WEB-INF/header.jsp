@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<%--<sec:authorize access="!isAuthenticated()">--%>
+<sec:authorize access="!isAuthenticated()">
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-around">
         <a href="/" class="navbar-brand main-logo">
@@ -48,9 +48,9 @@
         </ul>
     </nav>
 </header>
-<%--</sec:authorize>--%>
+</sec:authorize>
 
-<%--<sec:authorize access="isAuthenticated()">--%>
+<sec:authorize access="isAuthenticated()">
     <header class="page-header">
         <nav class="navbar navbar-expand-lg justify-content-around">
             <a href="/" class="navbar-brand main-logo">
@@ -88,7 +88,7 @@
             </ul>
         </nav>
     </header>
-<%--</sec:authorize>--%>
+</sec:authorize>
 
 </body>
 </html>

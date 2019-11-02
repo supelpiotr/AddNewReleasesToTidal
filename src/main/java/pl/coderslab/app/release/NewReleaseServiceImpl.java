@@ -18,7 +18,7 @@ public class NewReleaseServiceImpl implements NewReleaseService {
 
         try {
             Document docArtists = Jsoup.connect("https://www.junodownload.com/" +
-                    genre + "/two-weeks/tracks/?torder=bestseller").get();
+                    genre + "/two-weeks/tracks/?order=bestseller").get();
             Elements artists = docArtists.getElementsByClass("col juno-artist");
             ArrayList<String> artistsParsed = new ArrayList<>();
             for (Element artist : artists) {

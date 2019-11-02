@@ -7,7 +7,7 @@ import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 import pl.coderslab.app.utils.RestHelper;
 
-public class Session {
+public class TidalSession {
 
     private static final String TIDAL_SESSION_HEADER = "X-Tidal-SessionId";
     private static final String COUNTRY_CODE = "countryCode";
@@ -17,16 +17,16 @@ public class Session {
     private String sessionId;
     private String userId;
 
-    public static Session login(String username, String password, RestHelper restHelper) {
+    public static TidalSession login(String username, String password, RestHelper restHelper) {
         HttpResponse<JsonNode> jsonResponse = restHelper.executeRequest(Unirest.post(API_URL + "login/username")
                 .header("X-Tidal-Token", "wdgaB1CilGA-S_s2")
                 .field("username", username)
                 .field("password", password));
 
-        return restHelper.checkAndDeserialize(jsonResponse, Session.class);
+        return restHelper.checkAndDeserialize(jsonResponse, TidalSession.class);
     }
 
-    public static Session login(String username, String password) {
+    public static TidalSession login(String username, String password) {
         RestHelper restHelper = new RestHelper();
         return login(username, password, restHelper);
     }
