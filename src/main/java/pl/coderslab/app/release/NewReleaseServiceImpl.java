@@ -18,7 +18,7 @@ public class NewReleaseServiceImpl implements NewReleaseService {
 
         try {
             Document docArtists = Jsoup.connect("https://www.junodownload.com/" +
-                    genre + "/two-weeks/tracks/?order=bestseller").get();
+                    genre + "/charts/bestsellers/eight-weeks/tracks/").get();
             Elements artists = docArtists.getElementsByClass("col juno-artist");
             ArrayList<String> artistsParsed = new ArrayList<>();
             for (Element artist : artists) {
@@ -39,12 +39,12 @@ public class NewReleaseServiceImpl implements NewReleaseService {
 
         try {
             Document docTitles = Jsoup.connect("https://www.junodownload.com/" +
-                    genre + "/two-weeks/tracks/?order=bestseller/").get();
+                    genre + "/charts/bestsellers/eight-weeks/tracks/").get();
             Elements titles = docTitles.getElementsByClass("juno-title");
             ArrayList<String> titlesParsed = new ArrayList<>();
             for (Element title : titles) {
                 if (title.hasText()) {
-                    titlesParsed.add(title.text());
+                    titlesParsed.add(title.text().split("\\(")[0]);
                 }
             }
             return titlesParsed;

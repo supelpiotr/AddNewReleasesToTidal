@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pl.coderslab.app.tidal.TidalServiceImplementation;
+import pl.coderslab.app.tidal.TidalSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NewReleaseController {
 
+//    private final TidalSession tidalSession;
     private final NewReleaseServiceImpl newReleaseService;
     private final NewRelease newRelease;
     private final TidalServiceImplementation tidalServiceImplementation;
@@ -31,17 +33,17 @@ public class NewReleaseController {
 
         List<String> searchQuery = new ArrayList<String>(titles.size());
         for (int i = 0; i < titles.size(); i++) {
-            searchQuery.add(titles.get(i) + " " + artists.get(i));
+            searchQuery.add(titles.get(i).split("\\(")[0] + " " + artists.get(i));
         }
 
         String password = userDetails.getPassword();
         String username = userDetails.getUsername();
 
-        tidalServiceImplementation.login(userDetails.getUsername(),userDetails.getPassword());
+        tidalServiceImplementation.login("kinga.wieczorek8@wp.pl","kinga56");
         List<String> tidalUrl = new ArrayList<>();
         for (String s : searchQuery) {
             if (tidalServiceImplementation.searchTrack(s) != null) {
-                tidalUrl.add(tidalServiceImplementation.searchTrack(s).getUrl());
+                tidalUrl.add(tidalServiceImplementation.searchTrack(s).get(0).getUrl());
             } else {
                 tidalUrl.add("Track not found on Tidal");
             }
