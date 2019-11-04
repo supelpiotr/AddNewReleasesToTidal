@@ -1,12 +1,11 @@
 <%@ include file="/WEB-INF/header.jsp"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<sec:authorize access="isAuthenticated()">
+<%--<sec:authorize access="isAuthenticated()">--%>
 <section class="padding-large bg-light">
     <table class="center" border style="width:auto" align="center">
-        <tbody>
         <tr>
-            <th colspan="2">ADD PLAYLIST TO TIDAL</th>
+            <th colspan="3">ADD PLAYLIST TO TIDAL</th>
         </tr>
         <tr>
             <th>Title</th>
@@ -33,14 +32,13 @@
         </td>
         <td>
             <table class="center">
-                <c:forEach items="${releases.tidalUrl}" var="tidal" >
+                <c:forEach items="${releases.tidalURL}" var="url" >
                     <tr>
-                        <td>${tidal}</td>
+                        <td><a href=" ${url}"> ${url} </a></td>
                     </tr>
                 </c:forEach>
             </table>
         </td>
-        </tbody>
     </table>
 </section>
-</sec:authorize>
+<%--</sec:authorize>--%>

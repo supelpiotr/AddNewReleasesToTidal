@@ -33,11 +33,6 @@ public class RestHelper {
         return genson.deserialize(jsonResponse.getRawBody(), type);
     }
 
-    public <T> T checkAndDeserialize(HttpResponse<JsonNode> jsonResponse, GenericType<T> type) {
-        checkResponseStatus(jsonResponse);
-        return genson.deserialize(jsonResponse.getRawBody(), type);
-    }
-
     public <T extends BaseRequest> HttpResponse<JsonNode> executeRequest(T request) {
         try {
             return request.asJson();

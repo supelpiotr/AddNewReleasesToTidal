@@ -8,6 +8,6 @@ public interface TidalService {
     void login(String username, String password);
     void addTrackToPlaylist(List<String> trackId, String playlistId);
     TidalPlaylist createPlaylist(String title, String description);
-    TidalTrack searchTrack(String query);
+    List<TidalTrack> searchTrack(String query);
 
 }

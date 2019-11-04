@@ -15,10 +15,13 @@ public class TidalServiceImplementation implements TidalService {
 
     private TidalSession currentSession;
     private RestHelper restHelper;
+    private TidalTrack tidalTrack;
+    private TidalSearch tidalSearch;
 
     @Override
     public void login(String username, String password) {
         TidalSession currentSession = TidalSession.login(username, password);
+        tidalSearch = new TidalSearch(currentSession);
     }
 
     @Override
@@ -44,12 +47,7 @@ public class TidalServiceImplementation implements TidalService {
     }
 
     @Override
-    public TidalTrack searchTrack(String query) {
-        HttpResponse<JsonNode> jsonResponse = restHelper.executeRequest(currentSession.get("search")
-                .queryString("query", query)
-                .queryString("limit", "100")
-                .queryString("offset", 0)
-                .queryString("types", "TRACK"));
-        return restHelper.checkAndDeserialize(jsonResponse, TidalTrack.class);
+    public     List<TidalTrack> searchTrack(String query){
+        return tidalSearch.searchTrack(query);
     }
 }
