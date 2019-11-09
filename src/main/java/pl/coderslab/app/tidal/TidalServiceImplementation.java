@@ -5,8 +5,6 @@ import com.mashape.unirest.http.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.app.utils.RestHelper;
-
-import javax.naming.directory.SearchResult;
 import java.util.List;
 
 @Service

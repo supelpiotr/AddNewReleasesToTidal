@@ -31,7 +31,7 @@ public class NewReleaseController {
         List<String> artists = newReleaseService.findArtistsByGenre(genre);
         newRelease.setArtists(artists);
 
-        List<String> searchQuery = new ArrayList<String>(titles.size());
+        List<String> searchQuery = new ArrayList<>(titles.size());
         for (int i = 0; i < titles.size(); i++) {
             searchQuery.add(titles.get(i).split("\\(")[0] + " " + artists.get(i));
         }
@@ -39,7 +39,8 @@ public class NewReleaseController {
         String password = userDetails.getPassword();
         String username = userDetails.getUsername();
 
-        tidalServiceImplementation.login("kinga.wieczorek8@wp.pl","kinga56");
+        tidalServiceImplementation.login(username,password);
+//        tidalServiceImplementation.login("kinga.wieczorek8@wp.pl","kinga56");
         List<String> tidalUrl = new ArrayList<>();
         for (String s : searchQuery) {
             if (tidalServiceImplementation.searchTrack(s) != null) {

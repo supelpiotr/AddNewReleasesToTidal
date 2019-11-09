@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.coderslab.app.utils.RestHelper;
-
-import javax.naming.directory.SearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
