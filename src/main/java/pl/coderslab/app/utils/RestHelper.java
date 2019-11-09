@@ -4,7 +4,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
-import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 import pl.coderslab.app.exceptions.HttpBadResponseException;
 import pl.coderslab.app.exceptions.UncheckedUnirestException;
@@ -41,4 +40,5 @@ public class RestHelper {
             throw new UncheckedUnirestException(e);
         }
     }
+
 }

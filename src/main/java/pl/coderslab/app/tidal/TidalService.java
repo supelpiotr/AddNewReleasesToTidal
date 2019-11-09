@@ -1,6 +1,5 @@
 package pl.coderslab.app.tidal;
 
-import javax.naming.directory.SearchResult;
 import java.util.List;
 
 public interface TidalService {
