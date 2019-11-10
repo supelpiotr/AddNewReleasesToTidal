@@ -5,7 +5,9 @@
 <section class="padding-large bg-light">
     <table class="center" border style="width:auto" align="center">
         <tr>
-            <th colspan="3">ADD PLAYLIST TO TIDAL</th>
+            <th colspan="3">
+                <a href="/createplaylist/${releases.genre}"> ADD PLAYLIST TO TIDAL </a>
+            </th>
         </tr>
         <tr>
             <th>Title</th>
