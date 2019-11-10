@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import pl.coderslab.app.tidal.TidalPlaylist;
 import pl.coderslab.app.tidal.TidalServiceImplementation;
 import java.time.LocalDate;
 import pl.coderslab.app.user.UserServiceImpl;
@@ -54,6 +54,7 @@ public class NewReleaseController {
 
     }
 
+    @Transactional
     @GetMapping("/createplaylist/{genre}")
     String createPlaylist(@PathVariable String genre, Model model, @AuthenticationPrincipal UserDetails userDetails) {
 
