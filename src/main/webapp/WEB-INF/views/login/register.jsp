@@ -34,6 +34,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="tidalPasswordId">Tidal Password:</label>
+                    <form:input type="password" path="tidalPassword" id="tidalPasswordId" class="form-control"/>
+                    <form:errors path="password" element="div" cssClass="error"/>
+                </div>
+
+                <div class="form-group">
                     <label for="passwordId">Password:</label>
                     <form:input type="password" path="password" id="passwordId" class="form-control"/>
                     <form:errors path="password" element="div" cssClass="error"/>
@@ -44,12 +50,6 @@
                     <form:input type="email" path="username" id="emailId" class="form-control"/>
                     <form:errors path="username" element="div" cssClass="error"/>
                 </div>
-
-            <%--<div class="form-group">
-                    <label for="favouriteGenre">Favourite music genre:</label>
-                    <form:input type="text" path="favouriteGenre" id="favouriteGenreId" class="form-control"/>
-                    <form:errors path="favouriteGenre" element="div" cssClass="error"/>
-                </div>--%>
 
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>

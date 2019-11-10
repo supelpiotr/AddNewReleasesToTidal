@@ -15,37 +15,39 @@ public class TidalServiceImplementation implements TidalService {
     private RestHelper restHelper;
     private TidalTrack tidalTrack;
     private TidalSearch tidalSearch;
+    private TidalUserPlaylists tidalUserPlaylist;
+
+    @Override
+    public TidalPlaylist findPlaylistByName(String playlistTitle) {
+        return tidalUserPlaylist.findPlaylistByName(playlistTitle);
+    }
 
     @Override
     public void login(String username, String password) {
         TidalSession currentSession = TidalSession.login(username, password);
         tidalSearch = new TidalSearch(currentSession);
+        tidalUserPlaylist = new TidalUserPlaylists(currentSession);
+
     }
 
     @Override
     public void addTrackToPlaylist(List<String> trackId, String playlistId) {
-        HttpResponse<JsonNode> jsonResponseETag = restHelper.executeRequest(currentSession.post("playlists/" + playlistId));
-        restHelper.checkResponseStatus(jsonResponseETag);
-        String etag = jsonResponseETag.getHeaders().get("ETag").get(0);
-        HttpResponse<JsonNode> jsonResponse = restHelper.executeRequest(
-                currentSession.post("playlists/" + playlistId + "/items")
-                        .header("If-None-Match", etag)
-                        .field("trackIds", String.join(",", trackId))
-                        .field("toIndex", "0"));
-        restHelper.checkResponseStatus(jsonResponse);
+        tidalUserPlaylist.addTrackToPlaylist(trackId , playlistId);
     }
 
     @Override
     public TidalPlaylist createPlaylist(String title, String description) {
-        HttpResponse<JsonNode> jsonResponse = restHelper.executeRequest(
-                currentSession.post("users/" + currentSession.getUserId() + "/playlists")
-                        .field("title", title)
-                        .field("description", description));
-        return restHelper.checkAndDeserialize(jsonResponse, TidalPlaylist.class);
+        return tidalUserPlaylist.createPlaylist(title, description);
     }
 
     @Override
-    public     List<TidalTrack> searchTrack(String query){
+    public List<TidalTrack> searchTrack(String query){
         return tidalSearch.searchTrack(query);
     }
+
+    @Override
+    public List<TidalPlaylist> getUserPlaylists() {
+        return tidalUserPlaylist.getUserPlaylists();
+    }
+
 }

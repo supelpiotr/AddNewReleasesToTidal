@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
+import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 import pl.coderslab.app.exceptions.HttpBadResponseException;
 import pl.coderslab.app.exceptions.UncheckedUnirestException;
@@ -32,6 +33,11 @@ public class RestHelper {
         return genson.deserialize(jsonResponse.getRawBody(), type);
     }
 
+    public <T> T checkAndDeserialize(HttpResponse<JsonNode> jsonResponse, GenericType<T> type) {
+        checkResponseStatus(jsonResponse);
+        return genson.deserialize(jsonResponse.getRawBody(), type);
+    }
+
     public <T extends BaseRequest> HttpResponse<JsonNode> executeRequest(T request) {
         try {
             return request.asJson();
@@ -40,5 +46,4 @@ public class RestHelper {
             throw new UncheckedUnirestException(e);
         }
     }
-
 }

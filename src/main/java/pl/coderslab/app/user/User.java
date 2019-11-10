@@ -25,14 +25,14 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-/**    Changing the model. Don't want to limit user to one
-    favourite music genre.
-    @Column(nullable = false)
-    private String favouriteGenre;*/
 
     @NotBlank
     @Column(nullable = false)
     private String password;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String tidalPassword;
 
     @Email
     @NotBlank

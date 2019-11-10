@@ -43,7 +43,8 @@ public class TidalSearch {
             return restHelper.checkAndDeserialize(jsonResponse, TidalSearchResult.class);
         } else {
             TidalTrack tidalTrack = new TidalTrack();
-            tidalTrack.setTitle("TRACK NOT FOUND");
+            tidalTrack.setUrl("TRACK NOT FOUND");
+            tidalTrack.setId(0L);
             List<TidalTrack> tidalTrackList= new ArrayList<>();
             tidalTrackList.add(tidalTrack);
             TidalResult<TidalTrack> tidalTrackTidalResult = new TidalResult<>();
@@ -53,4 +54,5 @@ public class TidalSearch {
             return tidalSearchResult;
         }
     }
+
 }
