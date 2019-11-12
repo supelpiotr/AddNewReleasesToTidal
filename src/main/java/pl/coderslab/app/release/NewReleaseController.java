@@ -50,7 +50,7 @@ public class NewReleaseController {
 
         model.addAttribute("releases", newRelease);
 
-        return "dashboard/newreleases";
+        return "forward:/dashboard";
 
     }
 
@@ -111,4 +111,10 @@ public class NewReleaseController {
         return "/dashboard/newreleases";
 
     }
+
+//    @ModelAttribute("userPlaylists")
+//    public List<TidalPlaylist> findAllPlaylists() {
+//        return tidalServiceImplementation.getUserPlaylists();
+//    }
+
 }

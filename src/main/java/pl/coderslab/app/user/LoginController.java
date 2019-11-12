@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.app.release.NewRelease;
+import pl.coderslab.app.tidal.TidalServiceImplementation;
 
 import javax.validation.Valid;
 
@@ -17,6 +17,7 @@ public class LoginController {
 
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
+    private final TidalServiceImplementation tidalServiceImplementation;
 
     @GetMapping("/home")
     public String homepage() {
@@ -53,7 +54,7 @@ public class LoginController {
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         model.addAttribute("user", new User());
-        return "login/dashboard";
+        return "dashboard/dashboard";
     }
 
 }

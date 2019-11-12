@@ -27,7 +27,6 @@ public class TidalServiceImplementation implements TidalService {
         TidalSession currentSession = TidalSession.login(username, password);
         tidalSearch = new TidalSearch(currentSession);
         tidalUserPlaylist = new TidalUserPlaylists(currentSession);
-
     }
 
     @Override
