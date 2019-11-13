@@ -2,7 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div>
+<html>
+<body>
+
+    <div>
         <table class="tab-content">
                 <tr>
                     <th colspan="3">
@@ -43,3 +46,5 @@
                 </td>
         </table>
     </div>
+</body>
+</html>

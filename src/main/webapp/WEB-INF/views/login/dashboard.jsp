@@ -32,39 +32,46 @@
 <!-- Navigation -->
 <%@ include file="/WEB-INF/views/navigationbar.jsp"%>
 
-<!-- Header -->
 <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
-            <h1 class="mx-auto my-0 text-uppercase">Tidal</h1>
-            <div class="dropdown">
-            <button class="dropdown">New Releases</button>
-            <div class="dropdown-content">
-                <a href="/newreleases/bass">Bass</a>
-                <a href="/newreleases/breakbeat">Breakbeat</a>
-                <a href="/newreleases/disco">Disco/Nu-Disco</a>
-                <a href="/newreleases/drumandbass">Drum And Bass</a>
-                <a href="/newreleases/dubstep">Dubstep</a>
-                <a href="/newreleases/edm">EDM</a>
-                <a href="/newreleases/electro">Electro</a>
-                <a href="/newreleases/dance-pop">Euro Dance/Pop Dance</a>
-                <a href="/newreleases/footwork-juke">Footwork/Juke</a>
-                <a href="/newreleases/funk-soul-jazz">Funk Soul & Jazz</a>
-                <a href="/newreleases/hardcore">Hardcore/style</a>
-                <a href="/newreleases/hip-hop">Hip Hop/R&B</a>
-                <a href="/newreleases/house">House</a>
-                <a href="/newreleases/leftfield">Leftfield</a>
-                <a href="/newreleases/pop">Pop</a>
-                <a href="/newreleases/reggae">Reggae</a>
-                <a href="/newreleases/rock-music">Rock (All)</a>
-                <a href="/newreleases/techno">Techno</a>
-                <a href="/newreleases/trance-music">Trance</a>
-                <a href="/newreleases/4x4-garage">UK Garage</a>
-            </div>
-            </div>
+            <h1 class="mx-auto my-0 text-uppercase">REGISTER</h1>
+            <form:form method="post" modelAttribute="user">
+
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dropdown-content">
+                                <a href="/newreleases/bass">Bass</a>
+                                <a href="/newreleases/breakbeat">Breakbeat</a>
+                                <a href="/newreleases/disco">Disco/Nu-Disco</a>
+                                <a href="/newreleases/drumandbass">Drum And Bass</a>
+                                <a href="/newreleases/dubstep">Dubstep</a>
+                                <a href="/newreleases/edm">EDM</a>
+                                <a href="/newreleases/electro">Electro</a>
+                                <a href="/newreleases/dance-pop">Euro Dance/Pop Dance</a>
+                                <a href="/newreleases/footwork-juke">Footwork/Juke</a>
+                                <a href="/newreleases/funk-soul-jazz">Funk Soul & Jazz</a>
+                                <a href="/newreleases/hardcore">Hardcore/style</a>
+                                <a href="/newreleases/hip-hop">Hip Hop/R&B</a>
+                                <a href="/newreleases/house">House</a>
+                                <a href="/newreleases/leftfield">Leftfield</a>
+                                <a href="/newreleases/pop">Pop</a>
+                                <a href="/newreleases/reggae">Reggae</a>
+                                <a href="/newreleases/rock-music">Rock (All)</a>
+                                <a href="/newreleases/techno">Techno</a>
+                                <a href="/newreleases/trance-music">Trance</a>
+                                <a href="/newreleases/4x4-garage">UK Garage</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form:form>
         </div>
     </div>
 </header>
+
 
 <!-- Contact Section -->
 <section class="contact-section bg-black">
