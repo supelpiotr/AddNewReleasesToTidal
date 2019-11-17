@@ -15,5 +15,6 @@ public class NewRelease {
     private List<String> artists;
     private List<String> tidalURL;
     private String genre;
+    private List<Long> tidalTrackId;
 
 }

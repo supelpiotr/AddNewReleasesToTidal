@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <table>
-                        <c:forEach items="${releases.tidalURL}" var="url" >
+                        <c:forEach items="${releases.tidalURL}" var="url" varStatus="loop">
                             <tr>
                                 <td><a href=" ${url}"> ${url} </a></td>
                             </tr>

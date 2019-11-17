@@ -1,6 +1,8 @@
 package pl.coderslab.app.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,7 +54,11 @@ public class LoginController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+
+        String username = userDetails.getUsername();
+        String tidalPassword = userService.findByUserName(username).getTidalPassword();
+        tidalServiceImplementation.login(username,tidalPassword);
         model.addAttribute("user", new User());
         return "dashboard/dashboard";
     }

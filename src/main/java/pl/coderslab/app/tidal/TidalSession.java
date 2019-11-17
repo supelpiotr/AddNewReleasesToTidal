@@ -49,6 +49,12 @@ public class TidalSession {
                 .queryString(COUNTRY_CODE, countryCode);
     }
 
+    public HttpRequestWithBody patch(String url) {
+        return Unirest.post(API_URL + url)
+                .header(TIDAL_SESSION_HEADER, sessionId)
+                .queryString(COUNTRY_CODE, countryCode);
+    }
+
     public String getCountryCode() {
         return countryCode;
     }

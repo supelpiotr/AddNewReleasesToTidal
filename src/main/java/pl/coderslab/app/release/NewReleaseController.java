@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import pl.coderslab.app.tidal.TidalPlaylist;
 import pl.coderslab.app.tidal.TidalServiceImplementation;
 import java.time.LocalDate;
 import pl.coderslab.app.user.UserServiceImpl;
@@ -43,7 +45,7 @@ public class NewReleaseController {
         tidalServiceImplementation.login(username,tidalPassword);
         List<String> tidalUrl = new ArrayList<>();
         for (String s : searchQuery) {
-                tidalUrl.add(tidalServiceImplementation.searchTrack(s).get(0).getUrl());
+            tidalUrl.add(tidalServiceImplementation.searchTrack(s).get(0).getUrl());
         }
         newRelease.setTidalURL(tidalUrl);
         newRelease.setGenre(genre);
@@ -73,10 +75,6 @@ public class NewReleaseController {
         String tidalPassword = userService.findByUserName(username).getTidalPassword();
 
         tidalServiceImplementation.login(username,tidalPassword);
-        List<String> tidalUrl = new ArrayList<>();
-        for (String s : searchQuery) {
-            tidalUrl.add(tidalServiceImplementation.searchTrack(s).get(0).getUrl());
-        }
 
         if (tidalServiceImplementation.findPlaylistByName(genre) == null) {
             tidalServiceImplementation.createPlaylist(genre.toUpperCase() ,
@@ -90,9 +88,9 @@ public class NewReleaseController {
                         .get(0)
                         .getId().toString());
             }
-                tidalServiceImplementation.addTrackToPlaylist(tidalTrackId , playlistId);
+            tidalServiceImplementation.addTrackToPlaylist(tidalTrackId , playlistId);
 
-            } else {
+        } else {
 
             String playlistId = tidalServiceImplementation.findPlaylistByName(genre).getUuid();
             List<String> tidalTrackId = new ArrayList<>();
@@ -105,16 +103,16 @@ public class NewReleaseController {
             }
             tidalServiceImplementation.addTrackToPlaylist(tidalTrackId , playlistId);
 
-            }
+        }
 
 
         return "/dashboard/newreleases";
 
     }
 
-//    @ModelAttribute("userPlaylists")
-//    public List<TidalPlaylist> findAllPlaylists() {
-//        return tidalServiceImplementation.getUserPlaylists();
-//    }
+    @ModelAttribute("userPlaylists")
+    public List<TidalPlaylist> findAllPlaylists() {
+        return tidalServiceImplementation.getUserPlaylists();
+    }
 
 }
