@@ -8,11 +8,6 @@ body {
     background: #f1f1f1;
 }
 
-.dropdown li {
-    display: inline;
-}
-
-/* Header/Blog Title */
 .header {
     padding: 30px;
     text-align: center;
@@ -23,7 +18,6 @@ body {
     font-size: 50px;
 }
 
-/* Style the top navigation bar */
 .topnav {
     overflow: hidden;
     background-color: #333;
@@ -39,20 +33,16 @@ body {
     text-decoration: none;
 }
 
-/* Change color on hover */
 .topnav a:hover {
     background-color: #ddd;
     color: black;
 }
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
 .leftcolumn {
     float: left;
     width: 75%;
 }
 
-/* Right column */
 .rightcolumn {
     float: left;
     width: 25%;
@@ -60,14 +50,6 @@ body {
     padding-left: 20px;
 }
 
-/* Fake image */
-.fakeimg {
-    background-color: #aaa;
-    width: 100%;
-    padding: 20px;
-}
-
-/* Add a card effect for articles */
 .card {
     background-color: white;
     padding: 20px;
@@ -78,14 +60,12 @@ body {
     text-align: center;
 }
 
-/* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* Footer */
 .footer {
     padding: 20px;
     text-align: center;

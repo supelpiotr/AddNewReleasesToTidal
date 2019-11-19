@@ -5,6 +5,8 @@ import com.mashape.unirest.http.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.app.utils.RestHelper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,5 +50,27 @@ public class TidalServiceImplementation implements TidalService {
     public List<TidalPlaylist> getUserPlaylists() {
         return tidalUserPlaylist.getUserPlaylists();
     }
+
+    @Override
+    public List<String> prepareTidalUrl(List<String> searchQuery) {
+        List<String> tidalUrl = new ArrayList<>();
+        for (String s : searchQuery) {
+            tidalUrl.add(searchTrack(s).get(0).getUrl());
+        }
+        return tidalUrl;
+    }
+
+    @Override
+    public List<String> prepareTidalTracksId(List<String> searchQuery) {
+        List<String> tidalTrackId = new ArrayList<>();
+        for (int i = 0; i < searchQuery.size(); i++) {
+            tidalTrackId.add(searchTrack(searchQuery.get(i))
+                    .get(0)
+                    .getId()
+                    .toString());
+        }
+        return tidalTrackId;
+    }
+
 
 }
