@@ -1,4 +1,4 @@
-package pl.coderslab.app.release;
+package pl.coderslab.app.toptracks;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -7,36 +7,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import pl.coderslab.app.tidal.TidalPlaylist;
 import pl.coderslab.app.tidal.TidalServiceImplementation;
-import java.time.LocalDate;
 import pl.coderslab.app.user.UserServiceImpl;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
 @RequiredArgsConstructor
-public class NewReleaseController {
+public class TopTracksController {
 
-    private final NewReleaseServiceImpl newReleaseService;
-    private final NewRelease newRelease;
+    private final TopTracksServiceImpl topTracksService;
+    private final TopTrack topTrack;
     private final TidalServiceImplementation tidalServiceImplementation;
     private final UserServiceImpl userService;
 
-    @GetMapping("/newreleases/{genre}")
-    String newTracksByGenre(@PathVariable String genre, Model model, @AuthenticationPrincipal UserDetails userDetails) {
+    @GetMapping("/toptracks/{genre}/{beatportId}")
+    String topTracksByGenre(@PathVariable String genre,
+                            @PathVariable String beatportId,
+                            Model model,
+                            @AuthenticationPrincipal UserDetails userDetails) {
 
-        List<String> titles = newReleaseService.findTracksByGenre(genre);
-        newRelease.setTitles(titles);
+        List<String> titles = topTracksService.findTracksByGenre(genre, beatportId);
+        topTrack.setTitles(titles);
 
-        List<String> artists = newReleaseService.findArtistsByGenre(genre);
-        newRelease.setArtists(artists);
+        List<String> artists = topTracksService.findArtistsByGenre(genre, beatportId);
+        topTrack.setArtists(artists);
 
         List<String> searchQuery = new ArrayList<>(titles.size());
         for (int i = 0; i < titles.size(); i++) {
-            searchQuery.add(titles.get(i).split("\\(")[0] + " " + artists.get(i));
+            searchQuery.add
+                    (titles.get(i)
+                            .replace("Original Mix","")
+                            .replace("feat.","")
+                            + " " + artists.get(i).split(",")[0]);
         }
 
         String username = userDetails.getUsername();
@@ -47,28 +54,35 @@ public class NewReleaseController {
         for (String s : searchQuery) {
             tidalUrl.add(tidalServiceImplementation.searchTrack(s).get(0).getUrl());
         }
-        newRelease.setTidalURL(tidalUrl);
-        newRelease.setGenre(genre);
+        topTrack.setTidalURL(tidalUrl);
+        topTrack.setGenre(genre);
+        topTrack.setBeatportId(beatportId);
 
-        model.addAttribute("releases", newRelease);
+        model.addAttribute("toptracks", topTrack);
 
         return "forward:/dashboard";
 
     }
 
     @Transactional
-    @GetMapping("/createplaylist/{genre}")
-    String createPlaylist(@PathVariable String genre, Model model, @AuthenticationPrincipal UserDetails userDetails) {
+    @GetMapping("/createtopplaylist/{genre}/{beatportId}")
+    String createPlaylist(@PathVariable String genre,
+                          @PathVariable String beatportId,
+                          @AuthenticationPrincipal UserDetails userDetails) {
 
-        List<String> titles = newReleaseService.findTracksByGenre(genre);
-        newRelease.setTitles(titles);
+        List<String> titles = topTracksService.findTracksByGenre(genre, beatportId);
+        topTrack.setTitles(titles);
 
-        List<String> artists = newReleaseService.findArtistsByGenre(genre);
-        newRelease.setArtists(artists);
+        List<String> artists = topTracksService.findArtistsByGenre(genre, beatportId);
+        topTrack.setArtists(artists);
 
         List<String> searchQuery = new ArrayList<>(titles.size());
         for (int i = 0; i < titles.size(); i++) {
-            searchQuery.add(titles.get(i).split("\\(")[0] + " " + artists.get(i));
+            searchQuery.add
+                    (titles.get(i)
+                            .replace("Original Mix", "")
+                            .replace("feat.", "")
+                            + " " + artists.get(i).split(",")[0]);
         }
 
         String username = userDetails.getUsername();
@@ -76,11 +90,13 @@ public class NewReleaseController {
 
         tidalServiceImplementation.login(username,tidalPassword);
 
-        if (tidalServiceImplementation.findPlaylistByName(genre) == null) {
-            tidalServiceImplementation.createPlaylist(genre.toUpperCase() ,
-                    genre.toUpperCase() + " - New Releases (from junodownload.com) " +
+        if (tidalServiceImplementation.findPlaylistByName
+                (genre.toUpperCase() + "TOP") == null) {
+            tidalServiceImplementation.createPlaylist(genre.toUpperCase() + "TOP" ,
+                    genre.toUpperCase() + " - Top (Beatport) " +
                             "created on: " + LocalDate.now());
-            String playlistId = tidalServiceImplementation.findPlaylistByName(genre.toUpperCase()).getUuid();
+            String playlistId = tidalServiceImplementation.findPlaylistByName
+                    (genre.toUpperCase() + "TOP").getUuid();
             List<String> tidalTrackId = new ArrayList<>();
             for (int i = 0; i < searchQuery.size(); i++) {
                 tidalTrackId.add(tidalServiceImplementation
@@ -92,7 +108,8 @@ public class NewReleaseController {
 
         } else {
 
-            String playlistId = tidalServiceImplementation.findPlaylistByName(genre).getUuid();
+            String playlistId = tidalServiceImplementation.findPlaylistByName
+                    (genre.toUpperCase() + "TOP").getUuid();
             List<String> tidalTrackId = new ArrayList<>();
             for (int i = 0; i < searchQuery.size(); i++) {
                 tidalTrackId.add(tidalServiceImplementation
