@@ -9,6 +9,8 @@ public interface TidalService {
     TidalPlaylist createPlaylist(String title, String description);
     List<TidalTrack> searchTrack(String query);
     List<TidalPlaylist> getUserPlaylists();
+    List<String> prepareTidalUrl(List<String> searchQuery);
     TidalPlaylist findPlaylistByName(String playlistTitle);
+    List<String> prepareTidalTracksId(List<String> searchQuery);
 
 }
