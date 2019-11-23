@@ -40,7 +40,7 @@ public class TopTracksController {
         String tidalPassword = userService.findByUserName(username).getTidalPassword();
         tidalServiceImplementation.login(username,tidalPassword);
 
-        topTrack.setTidalURL(tidalServiceImplementation.prepareTidalUrl(searchQuery));
+        topTrack.setTidalTrackId(tidalServiceImplementation.prepareTidalTracksId(searchQuery));
         topTrack.setGenre(genre);
         topTrack.setBeatportId(beatportId);
 
@@ -50,25 +50,46 @@ public class TopTracksController {
 
     }
 
-    @Transactional
-    @GetMapping("/createtopplaylist/{genre}/{beatportId}")
-    String createPlaylist(@PathVariable String genre,
-                          @PathVariable String beatportId,
-                          @AuthenticationPrincipal UserDetails userDetails) {
+    @GetMapping("/toprocktracks/")
+    String topTracksByGenre(Model model,
+                            @AuthenticationPrincipal UserDetails userDetails) {
 
-        List<String> titles = topTracksService.findTracksByGenre(genre, beatportId);
+        List<String> titles = topTracksService.findRockTracksByGenre();
         topTrack.setTitles(titles);
 
-        List<String> artists = topTracksService.findArtistsByGenre(genre, beatportId);
+        List<String> artists = topTracksService.findRockArtistsByGenre();
         topTrack.setArtists(artists);
 
-        List<String> searchQuery = topTracksService.prepareSearchQuery(titles, artists);
+        List<String> searchQuery = topTracksService.prepareRockSearchQuery(titles , artists);
 
         String username = userDetails.getUsername();
         String tidalPassword = userService.findByUserName(username).getTidalPassword();
         tidalServiceImplementation.login(username,tidalPassword);
 
-        topTracksService.createPlaylistIfNotExist(genre, searchQuery);
+        topTrack.setTidalTrackId(tidalServiceImplementation.prepareTidalTracksId(searchQuery));
+        model.addAttribute("toptracks", topTrack);
+
+        return "forward:/dashboard";
+
+    }
+
+    @Transactional
+    @GetMapping("/createrocktopplaylist/")
+    String createPlaylist(@AuthenticationPrincipal UserDetails userDetails) {
+
+        List<String> titles = topTracksService.findRockTracksByGenre();
+        topTrack.setTitles(titles);
+
+        List<String> artists = topTracksService.findRockArtistsByGenre();
+        topTrack.setArtists(artists);
+
+        List<String> searchQuery = topTracksService.prepareRockSearchQuery(titles, artists);
+
+        String username = userDetails.getUsername();
+        String tidalPassword = userService.findByUserName(username).getTidalPassword();
+        tidalServiceImplementation.login(username,tidalPassword);
+
+        topTracksService.createPlaylistIfNotExist("Rock - ", searchQuery);
 
         return "forward:/dashboard";
 

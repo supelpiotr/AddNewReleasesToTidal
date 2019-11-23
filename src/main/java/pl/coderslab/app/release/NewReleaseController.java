@@ -36,6 +36,8 @@ public class NewReleaseController {
 
         newRelease.setTidalURL(tidalServiceImplementation.prepareTidalUrl(searchQuery));
         newRelease.setGenre(genre);
+        newRelease.setTidalTrackId(tidalServiceImplementation.prepareTidalTracksId(searchQuery));
+
 
         model.addAttribute("releases", newRelease);
 

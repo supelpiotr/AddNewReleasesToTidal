@@ -15,7 +15,7 @@ public class TopTrack {
     private List<String> artists;
     private List<String> tidalURL;
     private String genre;
-    private List<Long> tidalTrackId;
+    private List<String> tidalTrackId;
     private String beatportId;
 
 }

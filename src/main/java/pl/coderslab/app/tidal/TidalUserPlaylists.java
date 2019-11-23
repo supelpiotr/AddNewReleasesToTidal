@@ -52,6 +52,7 @@ public class TidalUserPlaylists {
                         .field("trackIds", String.join(",", trackIdWithoutNull))
                         .field("toIndex", "0"));
         restHelper.checkResponseStatus(jsonResponse);
+
     }
 
 

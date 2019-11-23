@@ -9,7 +9,10 @@
     <table class="tab-content">
         <tr>
             <th colspan="3">
+                <c:if test="${not empty toptracks.genre}">
                 <a href="/createtopplaylist/${toptracks.genre}/${toptracks.beatportId}"> ADD PLAYLIST TO TIDAL </a>
+                </c:if>
+                <a href="/createrocktopplaylist/"> ADD PLAYLIST TO TIDAL </a>
             </th>
         </tr>
         <tr>
@@ -37,10 +40,17 @@
         </td>
         <td>
             <table>
-                <c:forEach items="${toptracks.tidalURL}" var="url" varStatus="loop">
-                    <tr>
-                        <td><a href=" ${url}"> ${url} </a></td>
-                    </tr>
+                <c:forEach items="${toptracks.tidalTrackId}" var="track">
+                    <c:if test="${track < 1}">
+                        <tr>
+                            <td>NOT FOUND ON TIDAL</td>
+                        </tr>
+                    </c:if>
+                    <c:if test="${track > 1}">
+                        <tr>
+                            <td><a target="_blank" href=" https://listen.tidal.com/track/${track}?play=true"> LISTEN ON TIDAL </a></td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </table>
         </td>

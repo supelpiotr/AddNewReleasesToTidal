@@ -9,7 +9,7 @@
 
         <div class="header">
             <h1>AddNewReleasesToTidal</h1>
-            <p> Add new tracks from junodownload.com bestsellers to Tidal playlist </p>
+            <p> Add new tracks (junodownload.com) and top tracks (beatport.com , last.fm) to Tidal playlist )</p>
         </div>
     </head>
 <body>
