@@ -61,6 +61,52 @@ public class TopTracksServiceImpl implements TopTracksService {
     }
 
     @Override
+    public List<String> findRockArtistsByGenre() {
+
+        try {
+
+            ArrayList<String> artistsParsed = new ArrayList<>();
+            for (int i = 1; i < 5; i++) {
+                Document docArtist = Jsoup.connect("https://www.last.fm/tag/rock/tracks?page=" + i).get();
+                Elements artists = docArtist.getElementsByClass("chartlist-artist");
+                for (Element artist : artists) {
+                    if (artist.hasText()) {
+                        artistsParsed.add(artist.text());
+                    }
+                }
+            }
+            return artistsParsed;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> findRockTracksByGenre() {
+
+        try {
+
+            ArrayList<String> titlesParsed = new ArrayList<>();
+            for (int i = 1; i < 5; i++) {
+                Document docTitles = Jsoup.connect("https://www.last.fm/tag/rock/tracks?page=" + i).get();
+                Elements titles = docTitles.getElementsByClass("chartlist-name");
+                for (Element title : titles) {
+                    if (title.hasText()) {
+                        titlesParsed.add(title.text().split("\\(")[0]);
+                    }
+                }
+            }
+            return titlesParsed;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<String> prepareSearchQuery(List<String> titles, List<String> artists) {
         List<String> searchQuery = new ArrayList<>(titles.size());
         for (int i = 0; i < titles.size(); i++) {
@@ -69,6 +115,15 @@ public class TopTracksServiceImpl implements TopTracksService {
                             .replace("Original Mix", "")
                             .replace("feat.", "")
                             + " " + artists.get(i).split(",")[0]);
+        }
+        return searchQuery;
+    }
+
+    @Override
+    public List<String> prepareRockSearchQuery(List<String> titles, List<String> artists) {
+        List<String> searchQuery = new ArrayList<>(titles.size());
+        for (int i = 0; i < titles.size(); i++) {
+            searchQuery.add(titles.get(i) + " " + artists.get(i));
         }
         return searchQuery;
     }

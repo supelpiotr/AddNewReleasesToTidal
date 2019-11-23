@@ -18,7 +18,6 @@
 
     <div class="card">
 
-        <h2> Add new tracks from junodownload.com bestsellers to Tidal playlist </h2>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group btn-group-lg" role="group">
                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,6 +58,7 @@
                     <a class="dropdown-item" href="/toptracks/house/5">House</a>
                     <a class="dropdown-item" href="/toptracks/tech-house/11">Tech House</a>
                     <a class="dropdown-item" href="/toptracks/techno/6">Techno</a>
+                    <a class="dropdown-item" href="/toprocktracks/">Rock</a>
                 </div>
             </div>
 

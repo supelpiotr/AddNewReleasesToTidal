@@ -12,4 +12,5 @@ public interface NewReleaseService {
     List<String> prepareSearchQuery(List<String> titles, List<String> artists);
 
     void createPlaylistIfNotExist(@PathVariable String genre, List<String> searchQuery);
+
 }

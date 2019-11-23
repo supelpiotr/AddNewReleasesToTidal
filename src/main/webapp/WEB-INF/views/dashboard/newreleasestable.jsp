@@ -37,10 +37,17 @@
                 </td>
                 <td>
                     <table>
-                        <c:forEach items="${releases.tidalURL}" var="url" varStatus="loop">
-                            <tr>
-                                <td><a href=" ${url}"> ${url} </a></td>
-                            </tr>
+                        <c:forEach items="${releases.tidalTrackId}" var="track">
+                            <c:if test="${track < 1}">
+                                <tr>
+                                    <td>NOT FOUND ON TIDAL</td>
+                                </tr>
+                            </c:if>
+                            <c:if test="${track > 1}">
+                                <tr>
+                                    <td><a target="_blank" href=" https://listen.tidal.com/track/${track}?play=true"> LISTEN ON TIDAL </a></td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                     </table>
                 </td>
